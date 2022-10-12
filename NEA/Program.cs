@@ -9,7 +9,12 @@ namespace NEA
     {
         static void Main(string[] args)
         {
-            Print("");
+            Print("Hello, welcome to 'A game'\nPlease enter 'Start' to start the game");
+            string userin = ReadLine();
+
+            WriteLine(userin);
+            //.ToLower()
+            //console.clear();
         }
         public static void Print(string input)
         {
