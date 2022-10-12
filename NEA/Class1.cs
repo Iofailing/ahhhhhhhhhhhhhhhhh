@@ -28,7 +28,23 @@ namespace NEA
     class Basic_h_items
     {
         //basics for health items
+        public int hp;
+        public int rarity;
+        public Basic_h_items(int hp1, int rarity1)
+        {
+            hp = hp1;
+            rarity = rarity1;
+        }
 
+    }
+    
+    class money
+    {
+        public int value;
+        public money (int value1)
+        {
+            value = value1;
+        }
     }
 
     class Player : Basics_
