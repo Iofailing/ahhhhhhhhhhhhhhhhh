@@ -11,8 +11,33 @@ namespace NEA
         {
             Print("Hello, welcome to 'A game'\nPlease enter 'Start' to start the game");
             string userin = ReadLine();
+            string welcome = "I hope you have fun playing the game!!!";
 
-            WriteLine(userin);
+            if(userin.ToLower == "start")
+            {
+                Print(welcome);
+                Clear();
+            }
+            else
+            {
+                Print("Are you sure you wouldn't like to play the game. If you would like to, please enter 'Start'");
+                string userin2 = ReadLine();
+                if(userin2.ToLower == "start")
+                {
+                    Print(welcome);
+                    Clear();
+                }
+                else
+                {
+                    Print("That's a shame, goodbye");
+                    Clear();
+                    Environment.Exit(0);
+                }
+            }
+
+            Print("You open your eyes and look around, seeing a huge clearing surrounded by giant pine trees that looked to be extremly old.\nYou look down and see your face reflected in the water 'Who am i?' you think to yourself");
+            Print("What would you like to do?\nWould you like a tutorial?");
+            
             //.ToLower()
             //console.clear();
         }
