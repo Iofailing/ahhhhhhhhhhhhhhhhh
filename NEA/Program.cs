@@ -62,6 +62,21 @@ namespace NEA
                 }
             }
             
+            Basics_ player00 = new Player(20, 15, 0, 1);
+
+            string[] directions = new string[4] { "up", "down", "left", "right" };
+
+            Print("Please move");
+            string dr = ReadLine(); 
+            Random direct = new Random();
+
+            int drnum = direct.Next(0, directions.Length);
+
+            if(dr.ToLower() == directions[drnum])
+            {
+                Print("You have moved in the" + dr + )
+            }
+
             //.ToLower()
             //console.clear();
         }
