@@ -72,10 +72,20 @@ namespace NEA
 
             int drnum = direct.Next(0, directions.Length);
 
+            Basics_ slime = new Enemy(10, 10, 23, 1);
+            Basics_ giantBat = new Enemy(15, 15, 9, 1);
+            Basics_ mossman = new Enemy(20, 5, 15, 1);
+            Basics_ scaler = new Enemy(12, 7, 25, 1);
+            Basics_ creeper = new Enemy(14, 12, 17, 1);
+            Basics_ giantSpider = new Enemy(17, 4, 26, 1);
+            Basics_ demon = new Enemy(19, 3, 15, 1);
+
+
             if(dr.ToLower() == directions[drnum])
             {
-                Print("You have moved in the" + dr + )
+                Print("You have moved" + dr + "by 2 metres");
             }
+
 
             //.ToLower()
             //console.clear();
