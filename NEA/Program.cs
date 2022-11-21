@@ -81,6 +81,11 @@ namespace NEA
             Basics_ demon = new Enemy(19, 3, 15, 1);
 
 
+            Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler};
+
+            int mtrmvd = 0;
+
+            for()
             if(dr.ToLower() == directions[drnum])
             {
                 Print("You have moved" + dr + "by 2 metres");
