@@ -81,14 +81,31 @@ namespace NEA
             Basics_ demon = new Enemy(19, 3, 15, 1);
 
 
-            Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler};
+            Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler };
+            Random fight = new Random();
 
-            int mtrmvd = 0;
+            int Enemy_Fight = fight.Next(0, EnemyList.Length);
 
-            for()
-            if(dr.ToLower() == directions[drnum])
+            int if_fight = fight.Next(0, 1);
+
+
+            for(int mtrmvd = 0; mtrmvd < 15; mtrmvd++)
             {
-                Print("You have moved" + dr + "by 2 metres");
+                if(dr.ToLower() == directions[drnum])
+                {
+                    Print("You have moved" + dr + "by" + mtrmvd++ + "meters");
+                    Clear();
+                    if(if_fight == 1)
+                    {
+                        Print("Im very sorry, it seems as though an enemy has found you\nWhat would you like to do?\nFight\nRun away\nOpen menu");
+
+                    }
+                }
+                else
+                {
+                    Print("Sorry, that is not correct, you'll have to try again");
+                    Clear();
+                }
             }
 
 
