@@ -62,15 +62,11 @@ namespace NEA
                 }
             }
             
-            Basics_ player00 = new Player(20, 15, 0, 1);
+            Clear();
+
+            Basics_ player00 = new Player(25, 15, 0, 1);
 
             string[] directions = new string[4] { "up", "down", "left", "right" };
-
-            Print("Please move");
-            string dr = ReadLine(); 
-            Random direct = new Random();
-
-            int drnum = direct.Next(0, directions.Length);
 
             Basics_ slime = new Enemy(10, 10, 23, 1);
             Basics_ giantBat = new Enemy(15, 15, 9, 1);
@@ -79,7 +75,7 @@ namespace NEA
             Basics_ creeper = new Enemy(14, 12, 17, 1);
             Basics_ giantSpider = new Enemy(17, 4, 26, 1);
             Basics_ demon = new Enemy(19, 3, 15, 1);
-
+            Basics_ crawler = new Enemy(13, 5, 10, 1);
 
             Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler };
             Random fight = new Random();
@@ -88,22 +84,55 @@ namespace NEA
 
             int if_fight = fight.Next(0, 1);
 
+            List<string> Bag = new List<string>();
 
-            for(int mtrmvd = 0; mtrmvd < 15; mtrmvd++)
+            for(int mtrmvd = 0; mtrmvd < 30; mtrmvd++)
             {
-                if(dr.ToLower() == directions[drnum])
+                Print("Please move");
+                string dr = ReadLine();
+                Clear();
+                Random direct = new Random();
+                int drnum = direct.Next(0, directions.Length);
+
+                if (dr.ToLower() == directions[drnum])
                 {
                     Print("You have moved" + dr + "by" + mtrmvd++ + "meters");
                     Clear();
                     if(if_fight == 1)
                     {
-                        Print("Im very sorry, it seems as though an enemy has found you\nWhat would you like to do?\nFight\nRun away\nOpen menu");
+                        Print("Im very sorry, it seems as though an enemy has found you\nWhat would you like to do?\nFight\nRun away");
+                        string userin5 = ReadLine();
+                        Clear();
+                        if(userin5.ToLower() == "Fight")
+                        {
+                            Print("You have entered a fight!");
+                            Print("You have three options:\nAttack\nDefend\nOpen inventory\nWhat would you like to do?");
+                            string userin6 = ReadLine();
+                            if(userin6.ToLower() == "Attack")
+                            {
 
+                            }
+                            else if(userin6.ToLower() == "Defend")
+                            {
+
+                            }
+                            else if(userin6.ToLower() == "Open inventory")
+                            {
+
+                            }
+                        }
+                        else if(userin5.ToLower() == "Run away")
+                        {
+                            //chance of escaping 1 in 3
+                            Random chance = new Random();
+                            int escape = 
+                        }
                     }
                 }
                 else
                 {
                     Print("Sorry, that is not correct, you'll have to try again");
+                    //mtrmvd--;
                     Clear();
                 }
             }
