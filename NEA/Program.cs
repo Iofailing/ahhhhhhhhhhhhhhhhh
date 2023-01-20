@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using static System.Console;
@@ -7,13 +7,15 @@ namespace NEA
 {
     class Program
     {
-        static void Main(string[] args)
+        public void intro()
         {
+            //introduction to the game
             Print("Hello, welcome to 'A game'\nPlease enter 'Start' to start the game");
-            string userin = ReadLine();
+            string userin1 = ReadLine();
+
             string welcome = "I hope you have fun playing the game!!!";
 
-            if(userin.ToLower == "start")
+            if (userin1.ToLower() == "start")
             {
                 Print(welcome);
                 Clear();
@@ -22,7 +24,7 @@ namespace NEA
             {
                 Print("Are you sure you wouldn't like to play the game. If you would like to, please enter 'Start'");
                 string userin2 = ReadLine();
-                if(userin2.ToLower == "start")
+                if (userin2.ToLower() == "start")
                 {
                     Print(welcome);
                     Clear();
@@ -34,15 +36,19 @@ namespace NEA
                     Environment.Exit(0);
                 }
             }
+        }
 
-            Print("You open your eyes and look around, seeing a huge clearing surrounded by giant pine trees that looked to be extremly old.\nYou look down and see your face reflected in the water 'Who am i?' you think to yourself");
-            Print("What would you like to do?\nWould you like a tutorial?");
+        public void tutorial()
+        {
+            Print("You open your eyes and look around, seeing a huge clearing surrounded by giant pine trees that looked to be extremly old.\nYou see that you have but a simple bag on your person.\nYou look down and see your face reflected in the water\n'Who am i?' you think to yourself");
+            Clear();
+            Print("What would you like to do?\nWould you like a tutorial?\nType 'yes' if you would like a tutorial and 'no' if you would not like a tutorial");
             string userin3 = ReadLine();
             Clear();
 
             string Tutorial_Basics = "To move, type 'up', 'down', 'left', or 'right'\nIf you come across an enemy, you will have set choices to pick from\nTo pick up an item type 'pick up item' or 'add to inventory'\nTyping 'pick up item' will automatically add the item to your inventory";
 
-            if(userin3.ToLower == "yes")
+            if (userin3.ToLower() == "yes")
             {
                 Print(Tutorial_Basics);
                 Clear();
@@ -51,9 +57,9 @@ namespace NEA
             {
                 Print("Are you sure you wouldn't like a tutorial?");
                 string userin4 = ReadLine();
-                if(userin4.ToLower == "yes")
+                if (userin4.ToLower() == "yes")
                 {
-                    Print("Alright; if youre sure then");
+                    Print("Alright; if you're sure then");
                     Clear();
                 }
                 else
@@ -61,8 +67,15 @@ namespace NEA
                     Print(Tutorial_Basics);
                 }
             }
-            
             Clear();
+        }
+        static void Main(string[] args)
+        {
+            Program p1 = new Program();
+            p1.intro();
+            p1.tutorial();
+
+
 
             Basics_ player00 = new Player(25, 15, 0, 1);
 
@@ -80,14 +93,16 @@ namespace NEA
             Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler };
             Random fight = new Random();
 
-            int Enemy_Fight = fight.Next(0, EnemyList.Length);
+            Basic_h_items BasicPotion = new Basic_h_items(5, 1);
 
-            int if_fight = fight.Next(0, 1);
 
             List<string> Bag = new List<string>();
 
             for(int mtrmvd = 0; mtrmvd < 30; mtrmvd++)
             {
+                int Enemy_Fight = fight.Next(0, EnemyList.Length);
+                int if_fight = fight.Next(0, 1);
+
                 Print("Please move");
                 string dr = ReadLine();
                 Clear();
@@ -108,24 +123,44 @@ namespace NEA
                             Print("You have entered a fight!");
                             Print("You have three options:\nAttack\nDefend\nOpen inventory\nWhat would you like to do?");
                             string userin6 = ReadLine();
+                            Clear();
                             if(userin6.ToLower() == "Attack")
                             {
-
+                                Print("You have entered a fight!\nThis is your hp: " + player00.hp + "This is your enemy's hp: " + EnemyList[Enemy_Fight].hp);
+                                EnemyList[Enemy_Fight].hp -= player00.attack;
+                                if(EnemyList[Enemy_Fight].hp <= 0)
+                                {
+                                    Print("You have successfully defeated the enemy!!!");
+                                    //add random droppped item to add to inventory
+                                }
+                                else
+                                {
+                                    Print("The enemy has been hit!\nThis is the enemy's hp now: " + EnemyList[Enemy_Fight].hp);
+                                    player00.hp -= EnemyList[Enemy_Fight].attack;
+                                    //finish
+                                }
+                                if(player00.hp <= 0)
+                                {
+                                    Print("I'm very sorry but unfortunately, it seems as though you have lost all of your hp. Thank you for playing the game :)");
+                                    //finish
+                                }
                             }
                             else if(userin6.ToLower() == "Defend")
                             {
+                                //as this is the start area, 70% of the enemy's attack will be blocked
+
 
                             }
                             else if(userin6.ToLower() == "Open inventory")
                             {
-
+                                
                             }
                         }
                         else if(userin5.ToLower() == "Run away")
                         {
                             //chance of escaping 1 in 3
                             Random chance = new Random();
-                            int escape = 
+                            //int escape = 
                         }
                     }
                 }
@@ -141,6 +176,12 @@ namespace NEA
             //.ToLower()
             //console.clear();
         }
+
+        /*public static void Tutorial()
+        {
+            if ()
+        }*/
+
         public static void Print(string input)
         {
 
@@ -152,5 +193,7 @@ namespace NEA
             }
             Console.WriteLine();
         }
+
+
     }
 }
