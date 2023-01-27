@@ -12,12 +12,14 @@ namespace NEA
             //introduction to the game
             Print("Hello, welcome to 'A game'\nPlease enter 'Start' to start the game");
             string userin1 = ReadLine();
+            Clear();
 
             string welcome = "I hope you have fun playing the game!!!";
 
             if (userin1.ToLower() == "start")
             {
                 Print(welcome);
+                ReadLine();
                 Clear();
             }
             else
@@ -27,11 +29,13 @@ namespace NEA
                 if (userin2.ToLower() == "start")
                 {
                     Print(welcome);
+                    ReadLine();
                     Clear();
                 }
                 else
                 {
                     Print("That's a shame, goodbye");
+                    ReadLine();
                     Clear();
                     Environment.Exit(0);
                 }
@@ -40,17 +44,19 @@ namespace NEA
 
         public void tutorial()
         {
-            Print("You open your eyes and look around, seeing a huge clearing surrounded by giant pine trees that looked to be extremly old.\nYou see that you have but a simple bag on your person.\nYou look down and see your face reflected in the water\n'Who am i?' you think to yourself");
+            Print("You open your eyes and look around.\nYou see a huge clearing surrounded by giant pine trees that look to be extremly old.\nYou see that you have but a simple bag on your person.\nYou look down and see your face reflected in the water.\n'Who am i?' you think to yourself.");
+            ReadLine();
             Clear();
-            Print("What would you like to do?\nWould you like a tutorial?\nType 'yes' if you would like a tutorial and 'no' if you would not like a tutorial");
+            Print("Would you like a tutorial?\nType 'yes' if you would like a tutorial and 'no' if you would not like a tutorial.");
             string userin3 = ReadLine();
             Clear();
 
-            string Tutorial_Basics = "To move, type 'up', 'down', 'left', or 'right'\nIf you come across an enemy, you will have set choices to pick from\nTo pick up an item type 'pick up item' or 'add to inventory'\nTyping 'pick up item' will automatically add the item to your inventory";
+            string Tutorial_Basics = "To move, type 'up', 'down', 'left', or 'right'.\nIf you come across an enemy, you will have set choices to pick from.\nTo pick up an item type 'pick up item' or 'add to inventory.'\nTyping 'pick up item' will automatically add the item to your inventory.";
 
             if (userin3.ToLower() == "yes")
             {
                 Print(Tutorial_Basics);
+                ReadLine();
                 Clear();
             }
             else
@@ -60,11 +66,13 @@ namespace NEA
                 if (userin4.ToLower() == "yes")
                 {
                     Print("Alright; if you're sure then");
+                    ReadLine();
                     Clear();
                 }
                 else
                 {
                     Print(Tutorial_Basics);
+                    ReadLine();
                 }
             }
             Clear();
@@ -94,14 +102,16 @@ namespace NEA
             Random fight = new Random();
 
             Basic_h_items BasicPotion = new Basic_h_items(5, 1);
+            Basic_h_items Mushroom = new Basic_h_items(20, 3);
+            Basic_h_items GoldenApple = new Basic_h_items(15, 2);
 
 
             List<string> Bag = new List<string>();
 
             for(int mtrmvd = 0; mtrmvd < 30; mtrmvd++)
             {
-                int Enemy_Fight = fight.Next(0, EnemyList.Length);
-                int if_fight = fight.Next(0, 1);
+                int Enemy_Fight = fight.Next(0, EnemyList.Length+1);
+                int if_fight = fight.Next(0, 2);
 
                 Print("Please move");
                 string dr = ReadLine();
@@ -111,7 +121,8 @@ namespace NEA
 
                 if (dr.ToLower() == directions[drnum])
                 {
-                    Print("You have moved" + dr + "by" + mtrmvd++ + "meters");
+                    Print("You have moved " + dr + " by " + mtrmvd++ + " meters.");
+                    ReadLine();
                     Clear();
                     if(if_fight == 1)
                     {
@@ -131,6 +142,7 @@ namespace NEA
                                 if(EnemyList[Enemy_Fight].hp <= 0)
                                 {
                                     Print("You have successfully defeated the enemy!!!");
+
                                     //add random droppped item to add to inventory
                                 }
                                 else
@@ -185,11 +197,11 @@ namespace NEA
         public static void Print(string input)
         {
 
-            Thread.Sleep(15);
+            Thread.Sleep(35);
             for (int i = 0; i < input.Length; i++)
             {
                 Console.Write(input[i]);
-                Thread.Sleep(15);
+                Thread.Sleep(35);
             }
             Console.WriteLine();
         }
