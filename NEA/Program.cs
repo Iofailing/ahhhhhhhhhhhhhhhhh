@@ -51,7 +51,7 @@ namespace NEA
             string userin3 = ReadLine();
             Clear();
 
-            string Tutorial_Basics = "To move, type 'up', 'down', 'left', or 'right'.\nIf you come across an enemy, you will have set choices to pick from.\nTo pick up an item type 'pick up item' or 'add to inventory.'\nTyping 'pick up item' will automatically add the item to your inventory.";
+            string Tutorial_Basics = "To move, type 'up', 'down', 'left', or 'right'.\nIf you come across an enemy, you will have set choices to pick from.\nTo pick up an item type 'pick up item' or 'add to inventory'\nTyping 'pick up item' will automatically add the item to your inventory.";
 
             if (userin3.ToLower() == "yes")
             {
@@ -101,9 +101,32 @@ namespace NEA
             Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler };
             Random fight = new Random();
 
+
+            //make new method
             Basic_h_items BasicPotion = new Basic_h_items(5, 1);
             Basic_h_items Mushroom = new Basic_h_items(20, 3);
             Basic_h_items GoldenApple = new Basic_h_items(15, 2);
+            Basic_h_items SuspiciousBile = new Basic_h_items(30, 3);
+            Basic_h_items GlowingMoss = new Basic_h_items(18, 3);
+            Basic_h_items BleedingFairyHelmet = new Basic_h_items(50, 5);
+            Basic_h_items EasternJackOLanternMushroom = new Basic_h_items(35, 4);
+
+            Basic_h_items[] DroppedItems = new Basic_h_items[] { BasicPotion, Mushroom, GoldenApple, SuspiciousBile, GlowingMoss, BleedingFairyHelmet, EasternJackOLanternMushroom };
+
+            Money Plang = new Money(1);
+            Random drop = new Random();
+
+            int CollectItems = drop.Next(0, DroppedItems.Length + 1);
+            Print("The item " + DroppedItems[CollectItems] + " has been droppped.\nWould you like to pick it up?");
+            string userin = ReadLine();
+            Clear();
+
+            //To pick up an item type 'pick up item' or 'add to inventory'
+
+            if(userin.ToLower() == "pick up item")
+            {
+
+            }
 
 
             List<string> Bag = new List<string>();
