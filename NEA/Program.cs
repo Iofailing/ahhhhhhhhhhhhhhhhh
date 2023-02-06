@@ -85,6 +85,40 @@ namespace NEA
 
 
 
+
+
+
+
+
+            //make new method
+            Basic_h_items BasicPotion = new Basic_h_items(5, 1);
+            Basic_h_items Mushroom = new Basic_h_items(20, 3);
+            Basic_h_items GoldenApple = new Basic_h_items(15, 2);
+            Basic_h_items SuspiciousBile = new Basic_h_items(30, 3);
+            Basic_h_items GlowingMoss = new Basic_h_items(18, 3);
+            Basic_h_items BleedingFairyHelmet = new Basic_h_items(50, 5);
+            Basic_h_items EasternJackOLanternMushroom = new Basic_h_items(35, 4);
+
+            Basic_h_items[] DroppedItems = new Basic_h_items[] { BasicPotion, Mushroom, GoldenApple, SuspiciousBile, GlowingMoss, BleedingFairyHelmet, EasternJackOLanternMushroom };
+
+            int Plang = 1;
+            Random drop = new Random();
+
+            int CollectItems = drop.Next(0, DroppedItems.Length + 1);
+            int numcur = drop.Next(1, 21);
+            Print("The item " + DroppedItems[CollectItems] + " has been droppped. As well as " + Plang * numcur +  " Plang\nWould you like to pick it up?");
+            string userin = ReadLine();
+            Clear();
+
+            //To pick up an item type 'pick up item' or 'add to inventory'
+
+
+
+
+
+
+
+
             Basics_ player00 = new Player(25, 15, 0, 1);
 
             string[] directions = new string[4] { "up", "down", "left", "right" };
@@ -102,28 +136,7 @@ namespace NEA
             Random fight = new Random();
 
 
-            //make new method
-            Basic_h_items BasicPotion = new Basic_h_items(5, 1);
-            Basic_h_items Mushroom = new Basic_h_items(20, 3);
-            Basic_h_items GoldenApple = new Basic_h_items(15, 2);
-            Basic_h_items SuspiciousBile = new Basic_h_items(30, 3);
-            Basic_h_items GlowingMoss = new Basic_h_items(18, 3);
-            Basic_h_items BleedingFairyHelmet = new Basic_h_items(50, 5);
-            Basic_h_items EasternJackOLanternMushroom = new Basic_h_items(35, 4);
-
-            Basic_h_items[] DroppedItems = new Basic_h_items[] { BasicPotion, Mushroom, GoldenApple, SuspiciousBile, GlowingMoss, BleedingFairyHelmet, EasternJackOLanternMushroom };
-
-            Money Plang = new Money(1);
-            Random drop = new Random();
-
-            int CollectItems = drop.Next(0, DroppedItems.Length + 1);
-            Print("The item " + DroppedItems[CollectItems] + " has been droppped.\nWould you like to pick it up?");
-            string userin = ReadLine();
-            Clear();
-
-            //To pick up an item type 'pick up item' or 'add to inventory'
-
-            if(userin.ToLower() == "pick up item")
+            if (userin.ToLower() == "pick up item")
             {
 
             }
@@ -160,7 +173,7 @@ namespace NEA
                             Clear();
                             if(userin6.ToLower() == "Attack")
                             {
-                                Print("You have entered a fight!\nThis is your hp: " + player00.hp + "This is your enemy's hp: " + EnemyList[Enemy_Fight].hp);
+                                Print("You have entered a fight!\nThis is your hp: " + player00.hp + "\nThis is your enemy's hp: " + EnemyList[Enemy_Fight].hp);
                                 EnemyList[Enemy_Fight].hp -= player00.attack;
                                 if(EnemyList[Enemy_Fight].hp <= 0)
                                 {
