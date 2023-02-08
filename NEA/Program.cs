@@ -104,12 +104,25 @@ namespace NEA
             int Plang = 1;
             Random drop = new Random();
 
+            var Bag = new List<Basic_h_items>();
+
             int CollectItems = drop.Next(0, DroppedItems.Length + 1);
-            int numcur = drop.Next(1, 21);
-            Print("The item " + DroppedItems[CollectItems] + " has been droppped. As well as " + Plang * numcur +  " Plang\nWould you like to pick it up?");
+            int numcur = drop.Next(1, 31);
+            int money = numcur * Plang;
+            Print("The item " + DroppedItems[CollectItems] + " has been droppped.\nWould you like to pick it up?");
             string userin = ReadLine();
             Clear();
 
+            if(userin.ToLower() == "pick up item" || userin.ToLower() == "add to inventory")
+            {
+                Bag.Add(DroppedItems[CollectItems]);
+                Print("Your money counter is now: " + money + " plang\n" + "You also have " + DroppedItems[CollectItems] + " in your inventory");
+            }
+            else if(userin.ToLower() != "pick up item" || userin.ToLower() != "add to inventory")
+            {
+                Print("Are you sure you wouldn't like to add this to your inventory?");
+
+            }
             //To pick up an item type 'pick up item' or 'add to inventory'
 
 
@@ -135,14 +148,6 @@ namespace NEA
             Basics_[] EnemyList = new Basics_[] { slime, giantBat, mossman, scaler, creeper, giantSpider, demon, crawler };
             Random fight = new Random();
 
-
-            if (userin.ToLower() == "pick up item")
-            {
-
-            }
-
-
-            List<string> Bag = new List<string>();
 
             for(int mtrmvd = 0; mtrmvd < 30; mtrmvd++)
             {
