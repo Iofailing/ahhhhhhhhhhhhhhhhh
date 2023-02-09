@@ -7,9 +7,9 @@ namespace NEA
 {
     class Program
     {
+        //introduction to the game
         public void intro()
         {
-            //introduction to the game
             Print("Hello, welcome to 'A game'\nPlease enter 'Start' to start the game");
             string userin1 = ReadLine();
             Clear();
@@ -42,6 +42,7 @@ namespace NEA
             }
         }
 
+        //tutorial of how to play/function the basics game
         public void tutorial()
         {
             Print("You open your eyes and look around.\nYou see a huge clearing surrounded by giant pine trees that look to be extremly old.\nYou see that you have but a simple bag on your person.\nYou look down and see your face reflected in the water.\n'Who am i?' you think to yourself.");
@@ -77,20 +78,9 @@ namespace NEA
             }
             Clear();
         }
-        static void Main(string[] args)
+        //a method for choosing to collect a random dropped item + money
+        public void Collection()
         {
-            Program p1 = new Program();
-            p1.intro();
-            p1.tutorial();
-
-
-
-
-
-
-
-
-            //make new method
             Basic_h_items BasicPotion = new Basic_h_items(5, 1);
             Basic_h_items Mushroom = new Basic_h_items(20, 3);
             Basic_h_items GoldenApple = new Basic_h_items(15, 2);
@@ -113,21 +103,32 @@ namespace NEA
             string userin = ReadLine();
             Clear();
 
-            if(userin.ToLower() == "pick up item" || userin.ToLower() == "add to inventory")
+            if (userin.ToLower() == "pick up item" || userin.ToLower() == "add to inventory")
             {
                 Bag.Add(DroppedItems[CollectItems]);
                 Print("Your money counter is now: " + money + " plang\n" + "You also have " + DroppedItems[CollectItems] + " in your inventory");
             }
-            else if(userin.ToLower() != "pick up item" || userin.ToLower() != "add to inventory")
+            else
             {
-                Print("Are you sure you wouldn't like to add this to your inventory?");
-
+                Print("It doesn't seem wise to not add this to your inventory\nDo you want to add this to your inventory?");
+                string userin1 = ReadLine();
+                if (userin1.ToLower() == "yes")
+                {
+                    Print("'Wise decision' an eerie vice whispers to you");
+                    Bag.Add(DroppedItems[CollectItems]);
+                    Print("You now have: " + money + "plang");
+                }
+                else
+                {
+                    Print("'Not the wisest of decisions you've made today' you think to yourself");
+                }
             }
-            //To pick up an item type 'pick up item' or 'add to inventory'
-
-
-
-
+        }
+        static void Main(string[] args)
+        {
+            Program p1 = new Program();
+            p1.intro();
+            p1.tutorial();
 
 
 
@@ -183,7 +184,7 @@ namespace NEA
                                 if(EnemyList[Enemy_Fight].hp <= 0)
                                 {
                                     Print("You have successfully defeated the enemy!!!");
-
+                                    p1.Collection();
                                     //add random droppped item to add to inventory
                                 }
                                 else
@@ -195,6 +196,7 @@ namespace NEA
                                 if(player00.hp <= 0)
                                 {
                                     Print("I'm very sorry but unfortunately, it seems as though you have lost all of your hp. Thank you for playing the game :)");
+                                    Environment.Exit(0);
                                     //finish
                                 }
                             }
