@@ -177,6 +177,10 @@ namespace NEA
                             Print("You have three options:\nAttack\nDefend\nOpen inventory\nWhat would you like to do?");
                             string userin6 = ReadLine();
                             Clear();
+                            while (player00.hp > 0 || EnemyList[Enemy_Fight].hp > 0)
+                            {
+                                //fight, defend, open inventory
+                            }
                             if(userin6.ToLower() == "Attack")
                             {
                                 Print("You have entered a fight!\nThis is your hp: " + player00.hp + "\nThis is your enemy's hp: " + EnemyList[Enemy_Fight].hp);
@@ -184,16 +188,16 @@ namespace NEA
                                 if(EnemyList[Enemy_Fight].hp <= 0)
                                 {
                                     Print("You have successfully defeated the enemy!!!");
+                                    //the method for randomly dropping money and an item
                                     p1.Collection();
-                                    //add random droppped item to add to inventory
                                 }
                                 else
                                 {
                                     Print("The enemy has been hit!\nThis is the enemy's hp now: " + EnemyList[Enemy_Fight].hp);
-                                    player00.hp -= EnemyList[Enemy_Fight].attack;
                                     //finish
                                 }
-                                if(player00.hp <= 0)
+                                player00.hp -= EnemyList[Enemy_Fight].attack;
+                                if (player00.hp <= 0)
                                 {
                                     Print("I'm very sorry but unfortunately, it seems as though you have lost all of your hp. Thank you for playing the game :)");
                                     Environment.Exit(0);
@@ -203,7 +207,8 @@ namespace NEA
                             else if(userin6.ToLower() == "Defend")
                             {
                                 //as this is the start area, 70% of the enemy's attack will be blocked
-
+                                int defenceattack = (int)(EnemyList[Enemy_Fight].hp * 0.3);
+                                player00.hp -= defenceattack;
 
                             }
                             else if(userin6.ToLower() == "Open inventory")
