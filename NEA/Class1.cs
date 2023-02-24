@@ -14,6 +14,7 @@ namespace NEA
         public int level;
     }
 
+
     class Basics_weapons
     {
         public int attack;
@@ -28,27 +29,30 @@ namespace NEA
     class Basic_h_items
     {
         //basics for health items
+        public string Name;
         public int hp;
         public int rarity;
-        public Basic_h_items(int hp1, int rarity1)
+        public Basic_h_items(string name, int hp1, int rarity1)
         {
+            Name = name;
             hp = hp1;
             rarity = rarity1;
         }
 
     }
-    
-    class money
+
+  /*  class Money
     {
         public int value;
-        public money (int value1)
+        public Money(int value1)
         {
             value = value1;
         }
-    }
+    }*/
 
     class Player : Basics_
     {
+        public List<Basic_h_items> Bag = new List<Basic_h_items>();
         public Player(int hp1, int attack1, int exp1, int level1)
         {
             hp = hp1;
