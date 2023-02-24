@@ -7,6 +7,7 @@ namespace NEA
 {
     class Program
     {
+        Player player00 = new Player(25, 15, 0, 1);
         //introduction to the game
         public void intro()
         {
@@ -81,10 +82,10 @@ namespace NEA
         //a method for choosing to collect a random dropped item + money
         public void Collection()
         {
-            Basic_h_items BasicPotion = new Basic_h_items(5, 1);
-            Basic_h_items Mushroom = new Basic_h_items(20, 3);
-            Basic_h_items GoldenApple = new Basic_h_items(15, 2);
-            Basic_h_items SuspiciousBile = new Basic_h_items(30, 3);
+            Basic_h_items BasicPotion = new Basic_h_items("Basic Potion", 5, 1);
+            Basic_h_items Mushroom = new Basic_h_items("Mushroom", 20, 3);
+            Basic_h_items GoldenApple = new Basic_h_items("Golden Apple", 15, 2);
+            Basic_h_items SuspiciousBile = new Basic_h_items("Suspicious Bile", 30, 3);
             Basic_h_items GlowingMoss = new Basic_h_items(18, 3);
             Basic_h_items BleedingFairyHelmet = new Basic_h_items(50, 5);
             Basic_h_items EasternJackOLanternMushroom = new Basic_h_items(35, 4);
@@ -94,7 +95,6 @@ namespace NEA
             int Plang = 1;
             Random drop = new Random();
 
-            var Bag = new List<Basic_h_items>();
 
             int CollectItems = drop.Next(0, DroppedItems.Length + 1);
             int numcur = drop.Next(1, 31);
@@ -105,7 +105,7 @@ namespace NEA
 
             if (userin.ToLower() == "pick up item" || userin.ToLower() == "add to inventory")
             {
-                Bag.Add(DroppedItems[CollectItems]);
+                player00.Bag.Add(DroppedItems[CollectItems]);
                 Print("Your money counter is now: " + money + " plang\n" + "You also have " + DroppedItems[CollectItems] + " in your inventory");
             }
             else
@@ -115,7 +115,7 @@ namespace NEA
                 if (userin1.ToLower() == "yes")
                 {
                     Print("'Wise decision' an eerie vice whispers to you");
-                    Bag.Add(DroppedItems[CollectItems]);
+                    player00.Bag.Add(DroppedItems[CollectItems]);
                     Print("You now have: " + money + "plang");
                 }
                 else
@@ -130,13 +130,10 @@ namespace NEA
             p1.intro();
             p1.tutorial();
 
-
-
-
-            Basics_ player00 = new Player(25, 15, 0, 1);
-
             string[] directions = new string[4] { "up", "down", "left", "right" };
 
+
+            //do for this section what you did for the collections method
             Basics_ slime = new Enemy(10, 10, 23, 1);
             Basics_ giantBat = new Enemy(15, 15, 9, 1);
             Basics_ mossman = new Enemy(20, 5, 15, 1);
@@ -199,21 +196,22 @@ namespace NEA
                                 player00.hp -= EnemyList[Enemy_Fight].attack;
                                 if (player00.hp <= 0)
                                 {
+                                    //End game
                                     Print("I'm very sorry but unfortunately, it seems as though you have lost all of your hp. Thank you for playing the game :)");
                                     Environment.Exit(0);
-                                    //finish
                                 }
+
                             }
                             else if(userin6.ToLower() == "Defend")
                             {
                                 //as this is the start area, 70% of the enemy's attack will be blocked
-                                int defenceattack = (int)(EnemyList[Enemy_Fight].hp * 0.3);
+                                int defenceattack = (int)(EnemyList[Enemy_Fight].attack * 0.3);
                                 player00.hp -= defenceattack;
-
+                                Print("You have defended 70% of the enemy's attack\nHere is your current hp: " + player00.hp);
                             }
                             else if(userin6.ToLower() == "Open inventory")
                             {
-                                
+                                foreach(var x in Bag)
                             }
                         }
                         else if(userin5.ToLower() == "Run away")
@@ -232,15 +230,11 @@ namespace NEA
                 }
             }
 
+            Print("Well done!!\nYou have finally made it out of the forest and to the town of Eplabra!!");
 
             //.ToLower()
             //console.clear();
         }
-
-        /*public static void Tutorial()
-        {
-            if ()
-        }*/
 
         public static void Print(string input)
         {
