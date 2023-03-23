@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace NEA
 {
-    class Basics_
+    public class Basics_
     {
+        //allows bag to be accessed from any area of the code using player00
+        public List<Basic_h_items> Bag = new List<Basic_h_items>();
         //Basics for people and enemies - living things that will most likely be in a fight
         //so therefore need stats for attack, health, exp and level
         public int hp;
@@ -26,7 +29,7 @@ namespace NEA
         }
     }
 
-    class Basic_h_items
+    public class Basic_h_items
     {
         //basics for health items
         public string Name;
@@ -50,9 +53,9 @@ namespace NEA
         }
     }*/
 
-    class Player : Basics_
+    public class Player : Basics_
     {
-        public List<Basic_h_items> Bag = new List<Basic_h_items>();
+
         public Player(int hp1, int attack1, int exp1, int level1)
         {
             hp = hp1;
@@ -64,9 +67,11 @@ namespace NEA
 
     class Enemy : Basics_
     {
-        public Enemy(int hp1, int attack1, int exp1, int level1)
+        public string Name;
+        public Enemy(string name, int hp1, int attack1, int exp1, int level1)
         {
             //general class for all enemies and will be used to create multiple different types of enemy
+            Name = name;
             hp = hp1;
             attack = attack1;
             exp = exp1;
